@@ -13,7 +13,7 @@ Per una guida completa, si suggerisce la lettura della [documentazione ufficiale
 
 Per fare una scansione di un host sulla porta 80 basta lanciare il comando
 
-`nikto -h http://<indizzo-IP>`
+`nikto -h <indizzo-IP>`
 
 Esempio:
 
@@ -50,7 +50,7 @@ nikto -h 10.10.10.111
 
 Nel caso si vogliano analizzare altre porte si deve usare il flag `-p`
 
-`nikto -h http://<indizzo-IP> -p [port 1], [port 2], [port 3]`
+`nikto -h <indizzo-IP> -p [port 1], [port 2], [port 3]`
 
 
 ---
@@ -59,11 +59,11 @@ Nel caso si vogliano analizzare altre porte si deve usare il flag `-p`
 
 L'opzione Tuning permette di ridurre e specificare i test che si vogliono effettuare
 
-`nikto -h http://<indizzo-IP> -T [option(s)]`
+`nikto -h <indizzo-IP> -T [option(s)]`
 
 E' possibile negare le opzioni utilizzando il comando `x` seguito dal numero del test che non si vuole effettuare
 
-`nikto -h http://<indizzo-IP> -T -x[option(s)]`
+`nikto -h <indizzo-IP> -T -x[option(s)]`
 
 Valide opzioni sono:
 

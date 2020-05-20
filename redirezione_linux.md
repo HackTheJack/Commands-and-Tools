@@ -56,7 +56,7 @@ File descriptor 2 è lo standard error (stderr)
 
 &1 indica che è un file descriptor, senza & sarebbe il file 1
 
-2>&1 indica di ridirigere lo standard error sullo standard output
+2>&1 indica di ridirigere lo standard error dove sta andando lo standard output
 
 ## Pipe
 

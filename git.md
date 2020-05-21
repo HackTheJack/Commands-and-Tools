@@ -21,7 +21,7 @@ Git è suddiviso in tre aree:
 
 Per iniziare un nuovo progetto, creiamo una nuova cartella, accediamoci, e lanciamo il comando
 
-`git init`.
+`git init`
 
 Questo crea un nuovo **repository** con un cosiddetto _branch_ **master**
 

@@ -236,6 +236,7 @@ In questo caso, si devono modificare i file che creano conflitti e riaggiungerli
 ### 5. Effettuo il push dei commit nel repository remoto
 
 `git push -u origin <branch_name>` (se il branch non esiste ancora in remoto)
+
 `git push origin <branch_name>` (se il branch è presente in remoto)
 
 --- 

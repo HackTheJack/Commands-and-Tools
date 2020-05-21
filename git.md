@@ -1,182 +1,241 @@
 # Breve guida a git
 
+
 ## Divisione
 
-Git viene diviso in tre aree.
+Git è suddiviso in tre aree:
 
 1. Working Directory
+   
+   #### Sono contenuti i file locali sulla propria macchina
 
 2. Staging Area 
+   
+   #### Vengono inseriti i file modificati ma non ancora pubblicati nel repository ufficiale
 
-3. .git directory repository
+3. Head
+   #### La "testa" del repository remoto dove inseriamo le nostre modifiche dalla _staging area_
 
-### Iniziare un progetto
 
-`git init`
+## Iniziare un progetto
 
-### Creare il file .gitignore
+Per iniziare un nuovo progetto, creiamo una nuova cartella, accediamoci, e lanciamo il comando
 
-In questo file ci vanno i file che non vogliamo siano caricati su git.
+`git init`.
 
-Esempio:
+Questo crea un nuovo **repository** con un cosiddetto _branch_ **master**
 
-```text
-.project
-.dbcred.php
-*.pyc
-```
 
-### Aggiungere file alla staging area
+## Clonare un repository
 
-La staging area permette di scegliere su quali file fare il commit, per sempio se voglio fare un commit per ogni file li aggiungo uno a uno alla staging area.
-
-`git add nomefile`
-
-`git add -A`
-
-### Togliere file dalla staging area
-
-`git reset nomefile`
-
-oppure toglierli tutti 
-
-`git reset`
-
-### Eseguire un commit
-
-Sposto i file dalla staging area al git repository locale
-
-`git commit -m "primo commit"`
-
-## git remoto
-
-### Clonare un repository
+Il repository remoto creato dovrà essere collegato con la nostra parte locale. Utilizziamo il comando `clone`
 
 `git clone <url> <where to clone>`
 
-Per indicare la directory locale mettere il .
 
-### Informazioni su remoto
+## Aggiungere file alla staging area
 
-`git remote -v`
+La **staging area** permette di modificare i nostri file in modo sicuro. Possiamo scegliere quali file inviare nella _staging area_ con il comando `add` e successivamente inviarli nell'Head con il comando `commit`.
 
-Fornisce informazioni sul repository remoto
+Un tipico esempio può essere:
 
-`git branch -a`
+`git add <filename>`
 
-Fornisce informazioni sui branch locale e remoto
+Se vogliamo aggiungere più file modificati, possiamo utilizzare 
 
-### Vedere le differenze
+`git add -u`
 
-`git diff`
 
-Fa vedere le modifiche effettuate sui file
+## Rimuovere file dalla staging area
 
-### Prima di caricare i file sul repository remoto
+Se abbiamo aggiunto per sbaglio un file, possiamo toglierlo con il comando `reset`
 
-`git pull origin master`
+`git reset <filename>`
 
-Scarica le modifiche presenti sul remoto e non presenti sul locale. Necessario prima di caricare i file sul remoto
+oppure rimuoverli tutti con
 
-### Caricare i file sul repository remoto
+`git reset`
+
+
+## Eseguire un commit
+
+Una volta aggiunti i file nella staging area, possiamo effettuare il _commit_ per spostartli nell'area Head
+
+`git commit -m "Commit message to explain what we did here"`
+
+
+## Inviare la modifiche nel repository remoto
+
+I nostri file "committati" si trovano su Head, ma sono ancora in locale. Per poterli inviare sul repository remoto dobbiamo usare il comando `push`
 
 `git push origin master`
 
----
+NOTA: **master** rappresenta il branch di default per ogni progetto, ma è possibile specificare altri branch.
 
-## Common workflow
+### Branching
 
-Normalmente non si lavora sul master ma su un branch quindi
+I branch sono creati per aggiungere modifiche isolate le une dalle altre, in modo da non rompere il flusso principale del progetto; un branch creato può essere poi unito a quello principale una volta completata la nostra modifica.
 
-### 1. creo il branch
+![branch](https://rogerdudler.github.io/git-guide/img/branches.png)
 
-`git branch branch-di-lavoro`
 
-### 2. lo imposto come branch-di-lavoro
+Ad esempio, possiamo creare un branch chiamato `dev` con il comando
 
-`git checkout branch-di-lavoro`
+`git checkout -b dev`
 
-### 3. aggiungo i file alla staging area
+il cui output conferma che ci siamo spostati su tale branch
 
-`git add -A`
+```
+Switched to a new branch 'dev'
+```
 
-### 4. faccio il commit per spoatarli nel git repositori
-
-`git commit -m "metterò file nel branch di lavoro"`
-
-### 5. carico i file sul branch di lavoro
-
-`git push -u origin branch-di-lavoro`
-
-Con l'opzione -u impostiamo il repository di lavoro e la prossima volta basta solo fare 
-
-`git push`
-
---- 
-
-Quando ho deciso che è la versione definitiva posso fare il merge del branch di lavoro su quello master
-
-### 6. imposto il branch master
+Per tornare al branch _master_ basta usare il comando `checkout` in questo modo 
 
 `git checkout master`
 
-### 7. scarico le modifiche dal master
+ed eventualmente cancellare il branch creato con `branch -d`
 
-`git pull origin master`
+`git branch -d dev`
 
-### 8. eventuale controllo quali branch sono stati già uniti in precedenza (merged)
+```
+Deleted branch dev (was 00e49cb).
+```
 
-`git branch --merge`
 
-### 9. faccio il merge
+## Informazioni sul repository remoto
 
-Dato che sono su master posso fare il merge del branch-di-lavoro
+Il comando `remote` fornisce informazioni sul repository remoto
 
-`git merge branch-di-lavoro`
+`git remote -v`
 
-### 10. carico le modifiche
+```
+origin	https://github.com/<user>/<project>.git (fetch)
+origin	https://github.com/<user>/<project>.git (push)
+```
 
-`git push origin master`
 
-### 11. controllo che ci sia stato il merge
+## Informazioni sul branch
 
-`git branch --merge`
+Il comando
 
-### 12. Cancello branch di lavoro in locale
+`git branch`
 
-`git branch -d branch-di-lavoro`
+ci dice su quale branch stiamo operando, mentre se vogliamo conoscere tutti i branch collegati al repository eseguiamo
 
-### 13. Cancello branch di lavoro remoto
+`git branch -a`
 
-`git push origin --delete brach-di-lavoro
+```
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+```
 
+
+## Vedere lo stato del repository
+
+Un comando molto utile (e da usare dopo ogni modifica effettuata **prima** di aggiungere o fare commit, è il comando `status`
+
+`git status`
+
+```
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   <file1>
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	untracked-file1
+  untracked-file2
+	untracked-file3
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+in questo caso vediamo che c'è un file `file1` che è stato modificato ed è pronto per essere inserito nella staging area con il comando `add`, mentre ci sono 3 file che sono _untracked_ . Questo significa che ogni modifica effettuata su questi file non sarà contata, a meno di non aggiungerli tra i file che vogliamo considerare. Un repository può (ed ha) file che non vogliamo facciano parte della parte remota.
+
+
+### Vedere le differenze
+
+Ogni volta che facciamo una modifica ad un file, git tiene traccia del file originale e lo confronta con quello modificato. Con il comando `diff` possiamo vedere le nostre modifiche
+
+`git diff`
+
+```
+diff --git a/prova.h b/prova.h
+index 4a7cd15..57f3165 100644
+--- a/prova.h
++++ b/prova.h
+@@ -7,15 +7,16 @@
+ #include <linux/types.h>
+ 
+ struct struct_prova {
+-       
+-       int hack_the_lower;
++       int hack_the_tower;
+```
+
+
+## Update
+
+Per aggiornare il proprio repository locale con eventuali modifiche fatte in remoto da altri utenti che hanno accesso allo stesso, utilizzare il comando `pull`
+
+`git pull`
+
+In questo caso si scaricano le eventuali modifiche sa remoto per il branch `master` e si uniscono automaticamente al nostro branch.
+
+Se invece non siamo sul branch master, dobbiamo specificare il nome con `origin <branch>`
+
+`git pull origin dev`
+
+
+## Merge
+
+E' possibile unire le modifiche di un branch con il nostro attivo usando il comando `merge`.
+Tipicamente questo comando lo si usa per portare le modifiche di un branch esterno dentro il branch attivo.
+
+Per esempio, se abbiamo `master` e `dev`, e vogliamo fare il _merge_ di _dev_ in _master_, assicuriamoci di essere nel branch master ed effettuiamo
+
+`git merge <branch>`
+
+Il merge andrà a buon fine se non ci sono conflitti tra i due branch, cosa che purtroppo può capitare.
+In questo caso, si devono modificare i file che creano conflitti e riaggiungerli nell'area di stage con `git add <filename>`
 
 ---
 
-## Impostare il remote
 
-### con https
+### Common workflow
 
-`git remote add origin https://<username>:<password>@github.com/arEcofor/statistica`
+## 1. Creo il branch di lavoro
 
-### con SSH
+`git branch -b <branch_name>`
 
-Prima bisogna creare le chiavi e importarle su gitHub https://help.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh
+### 3. Aggiungo i file modificati alla staging area
 
-poi
+`git add -u`
 
-`git remote add origin git@github.com:username/repo-name-here.git`
+### 4. Effettuo il commit per spoatarli nell'area Head
 
-### per verificare l'origin impostata
+`git commit -m "this commit explain my changes"`
 
-`git remote get-url origin`
+### 5. Effettuo il push dei commit nel repository remoto
 
-### per modificare l'origin
+`git push -u origin <branch_name>` (se il branch non esiste ancora in remoto)
+`git push origin <branch_name>` (se il branch è presente in remoto)
 
-`git remote set-url origin git@github.com:runcioa/RyanTelegramFare`
+--- 
 
----
+## Altri comandi utili
+
+1. `git log` - per vedere i vari commit presenti nel repository
+2. `git checkout -- <filename>` - per eliminare le modifiche effettuate in locale su un file
+3. `git reset HEAD~` - per eliminare l'ultimo commit locale
+4. `git cherry-pick <commit-hash>` per passare un commit da un branch al nostro attivo
+
 
 #### Fonti
-
+* [GitHub fast guide](https://rogerdudler.github.io/git-guide/)
 * [video esplicativo](https://www.youtube.com/watch?v=HVsySz-h9r4&list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx)

@@ -17,6 +17,7 @@ Git è suddiviso in tre aree:
    #### La "testa" del repository remoto dove inseriamo le nostre modifiche dalla _staging area_
 
 
+
 ## Iniziare un progetto
 
 Per iniziare un nuovo progetto, creiamo una nuova cartella, accediamoci, e lanciamo il comando
@@ -26,11 +27,13 @@ Per iniziare un nuovo progetto, creiamo una nuova cartella, accediamoci, e lanci
 Questo crea un nuovo **repository** con un cosiddetto _branch_ **master**
 
 
+
 ## Clonare un repository
 
 Il repository remoto creato dovrà essere collegato con la nostra parte locale. Utilizziamo il comando `clone`
 
 `git clone <url> <where to clone>`
+
 
 
 ## Aggiungere file alla staging area
@@ -46,6 +49,7 @@ Se vogliamo aggiungere più file modificati, possiamo utilizzare
 `git add -u`
 
 
+
 ## Rimuovere file dalla staging area
 
 Se abbiamo aggiunto per sbaglio un file, possiamo toglierlo con il comando `reset`
@@ -57,11 +61,13 @@ oppure rimuoverli tutti con
 `git reset`
 
 
+
 ## Eseguire un commit
 
 Una volta aggiunti i file nella staging area, possiamo effettuare il _commit_ per spostartli nell'area Head
 
 `git commit -m "Commit message to explain what we did here"`
+
 
 
 ## Inviare la modifiche nel repository remoto
@@ -102,6 +108,7 @@ Deleted branch dev (was 00e49cb).
 ```
 
 
+
 ## Informazioni sul repository remoto
 
 Il comando `remote` fornisce informazioni sul repository remoto
@@ -112,6 +119,7 @@ Il comando `remote` fornisce informazioni sul repository remoto
 origin	https://github.com/<user>/<project>.git (fetch)
 origin	https://github.com/<user>/<project>.git (push)
 ```
+
 
 
 ## Informazioni sul branch
@@ -129,6 +137,7 @@ ci dice su quale branch stiamo operando, mentre se vogliamo conoscere tutti i br
   remotes/origin/HEAD -> origin/master
   remotes/origin/master
 ```
+
 
 
 ## Vedere lo stato del repository
@@ -158,7 +167,8 @@ no changes added to commit (use "git add" and/or "git commit -a")
 in questo caso vediamo che c'è un file `file1` che è stato modificato ed è pronto per essere inserito nella staging area con il comando `add`, mentre ci sono 3 file che sono _untracked_ . Questo significa che ogni modifica effettuata su questi file non sarà contata, a meno di non aggiungerli tra i file che vogliamo considerare. Un repository può (ed ha) file che non vogliamo facciano parte della parte remota.
 
 
-### Vedere le differenze
+
+## Vedere le differenze
 
 Ogni volta che facciamo una modifica ad un file, git tiene traccia del file originale e lo confronta con quello modificato. Con il comando `diff` possiamo vedere le nostre modifiche
 
@@ -179,6 +189,7 @@ index 4a7cd15..57f3165 100644
 ```
 
 
+
 ## Update
 
 Per aggiornare il proprio repository locale con eventuali modifiche fatte in remoto da altri utenti che hanno accesso allo stesso, utilizzare il comando `pull`
@@ -190,6 +201,7 @@ In questo caso si scaricano le eventuali modifiche sa remoto per il branch `mast
 Se invece non siamo sul branch master, dobbiamo specificare il nome con `origin <branch>`
 
 `git pull origin dev`
+
 
 
 ## Merge
@@ -207,9 +219,9 @@ In questo caso, si devono modificare i file che creano conflitti e riaggiungerli
 ---
 
 
-### Common workflow
+## Common workflow
 
-## 1. Creo il branch di lavoro
+### 1. Creo il branch di lavoro
 
 `git branch -b <branch_name>`
 
@@ -227,6 +239,7 @@ In questo caso, si devono modificare i file che creano conflitti e riaggiungerli
 `git push origin <branch_name>` (se il branch è presente in remoto)
 
 --- 
+
 
 ## Altri comandi utili
 

@@ -1,6 +1,6 @@
-# USE GUIDE
-
 ![WFUZZ](https://wfuzz.readthedocs.io/en/latest/_static/logo/wfuzz.svg)
+
+# USE GUIDE
 
 *WFUZZ* can be used to look for hidden content, such as files and directories, within a web server, allowing to find further attack vectors.
 This tool is included in Kali Linux.

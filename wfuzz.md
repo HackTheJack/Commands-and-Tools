@@ -1,4 +1,4 @@
-![WFUZZ](https://wfuzz.readthedocs.io/en/latest/_static/logo/wfuzz.svg)
+<img src="https://wfuzz.readthedocs.io/en/latest/_static/logo/wfuzz.svg" width="48">
 
 # USE GUIDE
 

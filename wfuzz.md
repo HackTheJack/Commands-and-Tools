@@ -1,4 +1,4 @@
-<img src="https://wfuzz.readthedocs.io/en/latest/_static/logo/wfuzz.svg" width="48">
+<img src="https://wfuzz.readthedocs.io/en/latest/_static/logo/wfuzz.svg" width="180">
 
 # USE GUIDE
 

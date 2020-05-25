@@ -1,5 +1,7 @@
 # USE GUIDE
 
+![WFUZZ](https://wfuzz.readthedocs.io/en/latest/_static/logo/wfuzz.svg)
+
 *WFUZZ* can be used to look for hidden content, such as files and directories, within a web server, allowing to find further attack vectors.
 This tool is included in Kali Linux.
 
@@ -27,8 +29,10 @@ In this example we have used the SecLists file (Raft-large-direcotires.txt) cont
 ```bash
 wfuzz -u http://<IPTARGET>/FUZZ/ -w <YOURPATH>/raft-large-directories.txt --hc 404
 
-********************************************************
-* Wfuzz 2.4.5 - The Web Fuzzer                        *
+********************************************************  
+
+* Wfuzz 2.4.5 - The Web Fuzzer                        *  
+
 ********************************************************
 
 Target: http://<IPTARGET>/FUZZ

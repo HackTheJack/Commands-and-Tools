@@ -59,11 +59,11 @@ Nel caso si vogliano analizzare altre porte si deve usare il flag `-p`
 
 L'opzione Tuning permette di ridurre e specificare i test che si vogliono effettuare
 
-`nikto -h <indizzo-IP> -T [option(s)]`
+`nikto -T [option(s)] -h <indizzo-IP>`
 
 E' possibile negare le opzioni utilizzando il comando `x` seguito dal numero del test che non si vuole effettuare
 
-`nikto -h <indizzo-IP> -T -x[option(s)]`
+`nikto -T -x[option(s)] -h <indizzo-IP>`
 
 Valide opzioni sono:
 

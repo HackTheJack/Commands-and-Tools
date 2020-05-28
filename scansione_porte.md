@@ -22,6 +22,8 @@ Il tool più utilizzato è nmap con le seguenti opzioni:
 
 * --min-rate \<number\>: Send packets no slower than \<number\> per second
 
+* -sn: Ping Scan - disable port scan
+
 ## Differenti approcci
   
 ### nmap 192.168.2.2

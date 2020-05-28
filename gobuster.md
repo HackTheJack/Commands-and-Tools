@@ -18,7 +18,7 @@ Risulta più lento rispetto altri altri nel caso in cui si debbano fare ricerche
 
 Per effettuare una scansione della macchina si utilizza un file già presente in kali linux presente nella directory `/usr/share/wordlists`:
 
-`gobuster -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt`
+`gobuster dir -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt`
 
 La scansione ritorna il nome delle directory, dei file e l'HTTP response code.
 
@@ -66,7 +66,7 @@ Response [https://en.wikipedia.org/wiki/List_of_HTTP_status_codes]
 
 #### Aggiungendo il parametro -l (lenght)
 
-`gobuster -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -l`
+`gobuster dir -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -l`
 
 Ci fornisce la **dimensione** del body.
 
@@ -114,14 +114,14 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 
 #### Aggiungendo il parametro -s e l'http status code
 
-`gobuster -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -s 200`
+`gobuster dir -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -s 200`
 
 Ovviamente restituisce solo i file che hanno http status 200 o 302.
 
 &nbsp;
 
 ```bash
-gobuster -u http://10.10.0.50/dvwa/ -w common.txt -s 200,301
+gobuster dir -u http://10.10.0.50/dvwa/ -w common.txt -s 200,301
 
 =====================================================
 Gobuster v2.0.1              OJ Reeves (@TheColonial)
@@ -152,7 +152,7 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 
 #### Se voglio vedere solo i file o le directory
 
-`gobuster -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -q -n`
+`gobuster dir -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -q -n`
 
 ```bash
 ~/gobuster# gobuster -u http://10.10.0.50/dvwa/ -w common.txt -q -n
@@ -177,16 +177,16 @@ Gobuster v2.0.1              OJ Reeves (@TheColonial)
 
 #### Se voglio solo file con una determinata estensione (php, txt, html)
 
-`gobuster -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -x .php,.txt,.html`
+`gobuster dir -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -x .php,.txt,.html`
 
 ---
 
 #### Se voglio ridirigere l'output su file
 
-`gobuster -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -o result`
+`gobuster dir -u http://<IP macchina>/<directory>/ -w /usr/share/wordlists/common.txt -o result`
 
 ```bash
-gobuster -u http://10.10.0.50/dvwa/ -w common.txt -o result
+gobuster dir -u http://10.10.0.50/dvwa/ -w common.txt -o result
 
 /.hta
 /.htpasswd

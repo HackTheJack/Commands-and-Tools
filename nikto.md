@@ -3,7 +3,8 @@
 
 ## Guida all'uso
 
-**Nikto** è uno scanner di vulnerabilità da riga di comando che esegue la scansione di un _server Web_ alla ricerca di file pericolosi, software obsoleti e altri problemi.
+**Nikto** è uno scanner per la ricerca di vulnerabilità in un **server Web**.
+
 In questa guida vediamo i principali comandi utilizzati.
 Per una guida completa, si suggerisce la lettura della [documentazione ufficiale](https://cirt.net/nikto2-docs/)
 

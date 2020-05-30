@@ -1,3 +1,12 @@
 # Commands and Tools
 
-### Container of personal tutorial of main commands and tools
+---
+1. Virtual Box
+2. Git
+3. Linux redirection
+4. Port scanning
+---
+1. Gobuster
+2. Netcat
+3. Nikto
+4. WFuzz

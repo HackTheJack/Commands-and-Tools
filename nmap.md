@@ -1,6 +1,7 @@
-# Scansione porte
+# NMAP
 
-Il tool più utilizzato è nmap con le seguenti opzioni:
+ **Nmap** è uno dei tool più usati per la scansione delle porte (_port scanning_).
+
 
 * -sU: UDP Scan
 
@@ -24,19 +25,21 @@ Il tool più utilizzato è nmap con le seguenti opzioni:
 
 * -sn: Ping Scan - disable port scan
 
-## Differenti approcci
-  
+
+## Esempi
+
+TODO: spiegazione delle varie opzioni
+
 ### nmap 192.168.2.2
-
-This option scans all reserved TCP ports on the machine
-
+---
 ### nmap -sS -sU -T4 -A -v 192.168.2.2
-
+---
 ### nmap -O -sV 192.168.2.2
-
+---
 ### nmap -Pn -p- -sV 10.0.1.9
+---
 
-## In due fasi
+## Scansione con più fasi
 
 * ports = $(nmap -p- --min-rate=1000 -T4 10.10.10.27 | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
 

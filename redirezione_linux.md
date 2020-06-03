@@ -1,81 +1,73 @@
-# redirection linux
+# Redirezione su Linux/Unix
 
-## Stream
+## Streams
 
-In linux l'input e l'output è gestito con tre flussi:
+In un sistema Linux/Unix _input_ e _output_ sono gestiti con tre flussi:
 
-* standard input (stdin) (0)
-* standard output (stdout) (1)
-* standard error (stderr) (2)
+* _standard input_ (`stdin`) (0)
 
-### Standard input
+Lo __standard input__ è lo stream da cui un programma legge i dati di input
 
-Se è presente un utente lo standard input fa riferimento all'input da tastiera, lo standard output e lo standard error sono visualizzati sullo schermo.
+* _standard output_ (`stdout`) (1)
 
-Per interrompere una richiesta di stdin si usa CTRL-d.
+Lo __standard output__ è lo stream su cui un programma scrive i dati in output
 
-### Standard output
+* _standard error_ (`stderr`) (2)
 
-Viene stampato il testo sul terminale
+Lo __standard error__ è lo stream su cui un programma scrive i messaggi di errore o diagnostica
 
-`echo inviato allo standatd output`
 
-### Standard error
+## Redirezione del flusso (_stream redirection_)
 
-Scrive sullo schermo gli errori generati da un programma
+### Sovrascrivere
 
-## Redirezione del flusso (stream redirection)
+`>` _standard output_
 
-### Sovrascrive
+`<` _standard input_
 
-`> -standard output`
+`2>` _standard error_
 
-`< -standard input`
+### Accodare
 
-`2> -standard error`
+`>>` _standard output_
 
-### Accoda
+`<<` _standard input_
 
-`>> -standard output`
+`2>>` _standard error_
 
-`<< -standard input`
 
-`2>> -standard error`
+### Redirezione dello _stderr_ su _stdout_
 
-### /dev/null
+`&` rappresenta il _file descriptor_ associato ad un comando o ad un file.
 
-è un file speciale per eliminare dati che gli vengono passati
+Una delle possibilità permesse è la redirezione di uno stream in un altro. In particolare vediamo come redirigere lo _standard error_ su quello di _output_ in modo da essere processati insieme.
 
-`ls /dev/null`
+Mettiamo di voler cercare il file _profile.conf_.
 
-### 2>&1 cosa significa
+`find / -name profile.conf > results 2>&1`
 
-File descriptor 1 è lo standard output (stdout)
+In questo caso abbiamo scritto il risultato del comando `find` in un file _results_, reindirizzando sia lo `stdin` e lo `stdout` nel file.
 
-File descriptor 2 è lo standard error (stderr)
-
-&1 indica che è un file descriptor, senza & sarebbe il file 1
-
-2>&1 indica di ridirigere lo standard error dove sta andando lo standard output
+Senza la redirezione, lo `stderr` sarebbe stato visualizzato sullo schermo.
 
 ## Pipe
 
-Viene utilizzato per ridirigere lo stream di un programma verso un altro.
-Quando lo standard output di un programma è mandato ad un altro attraverso il pipe viene visualizzato sullo schermo solo il risultato del secondo programma.
+Viene utilizzato per ridirigere lo _stream_ di un programma verso un altro.
+Quando lo _standard output_ di un programma è mandato ad un altro attraverso il pipe viene visualizzato sullo schermo solo il risultato del secondo programma.
 
 Esempio:
 
 `ls | less`
 
-la lista viene visualizza una riga alla volta.
+L'output di `ls` diventa l'input del comando `less`. In questo modo l'output finale è quello di `less`
 
-## Filtri
+## Filtri (TODO improve)
 
-* grep ritorna il testo che corrisponde alla stringa passata a grep
+* `grep` ritorna il testo che corrisponde alla stringa passata a grep
 
-* wc conta caratteri, righe e parole
+* `wc` conta caratteri, righe e parole
 
-* tee ridirige lo standard input sia allo standard out che a uno più file
+* `tee` ridirige lo standard input sia allo standard out che a uno più file
 
 `wc /etc/magic | tee magic_count.txt`
 

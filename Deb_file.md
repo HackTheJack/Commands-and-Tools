@@ -1,7 +1,7 @@
 # Unpack, modify and repack deb files
 
 
-There are instances when you need to modify some file(s) inside a deb package and repack it for installation.
+There are _deb_ instances where you need to modify some file(s) inside and repack it.
 
 This can be done very easily on _Ubuntu_ and _Debian_ using `dkpg-deb`
 

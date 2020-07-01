@@ -241,6 +241,58 @@ In questo caso, si devono modificare i file che creano conflitti e riaggiungerli
 
 --- 
 
+## Forkare un progetto e sincronizzarlo con l'originale
+
+### Configurare e sincronizzare un punto remoto per il fork
+
+1. Visualizzare la lista dei _repository_ remoti per il _fork_
+```
+$ git remote -v
+> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+```
+2. Specificare un nuovo repository remoto _upstream_ che sarà sincronizzato con il _fork_
+```
+$ git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
+```
+3. Verificare il nuovo _upstream_ repository specificato per il fork
+```
+$ git remote -v
+> origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+> origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
+> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
+```
+
+### Sincronizzare il fork
+
+1. Aggiornare i _branches_ e i rispettivi _commits_ dal repository _upstream_ . I _commits_ del **master** saranno salvati nel branch locale `upstream/master`
+```
+$ git fetch upstream
+> remote: Counting objects: 75, done.
+> remote: Compressing objects: 100% (53/53), done.
+> remote: Total 62 (delta 27), reused 44 (delta 9)
+> Unpacking objects: 100% (62/62), done.
+> From https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY
+>  * [new branch]      master     -> upstream/master
+```
+2. Controllare il branch `master` locale
+```
+$ git checkout master
+> Switched to branch 'master'
+```
+
+3. "Mergiare" le modifiche dal branch remoto `upstream/master` nel nostro `master`. Questo passaggio permette la sincronizzazione tra il nostro fork e il repository originale.
+```
+$ git merge upstream/master
+> Updating a422352..5fdff0f
+> Fast-forward
+>  README                    |    9 -------
+>  README.md                 |    7 ++++++
+>  2 files changed, 7 insertions(+), 9 deletions(-)
+>  delete mode 100644 README
+>  create mode 100644 README.md
+```
 
 ## Altri comandi utili
 
